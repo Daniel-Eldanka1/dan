@@ -5,7 +5,6 @@ function calculateTax(grossSalary) {
     if (grossSalary <= 5000) {
         return 0;
     }
-
     // If salary is above 5000 and up to 6000 ==> 5% tax
     else if (grossSalary <= 6000) {
         return grossSalary * 0.05;
