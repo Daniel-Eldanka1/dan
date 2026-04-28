@@ -1,4 +1,4 @@
-//Function to calculate income tax
+// Function to calculate income tax
 function calculateTax(grossSalary) {
 
     // If salary is 5000 or less ==> no tax
@@ -40,15 +40,15 @@ function processSalary({
     year
 }) {
 
-    // Step 1: Calculate Required Monthly Hours
+    // Calculating Required Monthly Hours (4 weeks = 1 month)
 
     // Company requires 45 hours per week
     const requiredWeeklyHours = 45;
 
-    // Approximate monthly hours (4 weeks)
+    // Convert the weeks (4 weeks) to month
     const requiredMonthlyHours = requiredWeeklyHours * 4;
 
-    // Step 2: Calculate Overtime Hours
+    // Calculating Overtime Hours
 
     let overtimeHours = 0;
 
@@ -56,12 +56,11 @@ function processSalary({
         overtimeHours = hoursWorked - requiredMonthlyHours;
     }
 
-     // Step 3: Calculate Overtime Pay
 
     // Each extra hour earns 2% of base salary
     const overtimePay = overtimeHours * (baseSalary * 0.02);
 
-      // Step 4: Calculate Bonus
+      // Calculate Bonus
     let bonus = 0;
 
     // Managers get 5% bonus
@@ -74,35 +73,35 @@ function processSalary({
         bonus = (baseSalary + overtimePay) * 0.08;
     }
 
-       // Step 5: Calculate Commission
+       // Calculate Commission
 
     let commission = 0;
 
-    // Sales agent earns 4% per sale
+    // Sales agent 4% commission per sale
     if (employeeType === "sales") {
         commission = (salesCount * saleValue) * 0.04;
     }
 
 
 
-    // Step 6: Calculate Gross Salary
+    // Calculating Gross Salary
 
     const grossSalary = baseSalary + overtimePay + bonus + commission;
 
-       // Step 7: Pension Deduction
+       //  Pension Deduction ==> 12%
 
     const pension = grossSalary * 0.12;
 
 
-    // Step 8: Tax Deduction  ======================================================
+    // Tax Deduction (the % is calculated from the income rate "calculatedTax" after the pension is taken from the gross salary)
 
     const tax = calculateTax(grossSalary - pension);
 
-    // Step 9: Net Salary
+    // Net Salary
 
     const netSalary = grossSalary - pension - tax;
 
-  // Step 10: Generate Pay Slip
+  // Pay Slip template
 
     const paySlip = `
 EMPLOYEE PAY SLIP - ${month} ${year}
@@ -131,8 +130,7 @@ Net Salary     : GHS ${netSalary.toFixed(2)}
     return paySlip;
 }
 
-// Sanity check Q1.
-// CFO January 2026
+// Q1. CFO January 2026
 
 processSalary({
     employeeName: "Daniel Kakabiku",
@@ -158,3 +156,4 @@ processSalary({
     month: "December",
     year: 2025
 });
+
